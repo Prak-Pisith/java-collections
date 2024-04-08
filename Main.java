@@ -73,10 +73,20 @@ class Dog extends Animal {
     void bark() {
         System.out.println("dog barking ...");
     }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Dog{}";
+    }
 }
 class Cat extends Animal {
     void meow() {
         System.out.println("cat meowing ...");
+    }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Cat{}";
     }
 }
 
@@ -100,6 +110,18 @@ class Main {
         // => Using Wildcard <?>
         main.takeAnimalsV2(dogList);
 
+        // Wildcard => ONLY DOG
+        List<Dog> vaccinatedDogs = main.takeAnimalsV3(dogList);
+        System.out.println(vaccinatedDogs);
+
+        // Wildcard => ALL ANIMALS
+        List<Animal> vaccinatedAnimals = main.takeAnimalsV3(animalList);
+        System.out.println(vaccinatedAnimals);
+
+        // Also
+        List<? extends Animal> vaccinatedSomethings = main.takeAnimalsV3(animalList);
+        System.out.println(vaccinatedSomethings);
+
 
     }
 
@@ -114,6 +136,11 @@ class Main {
             animal.eat();
         }
     }
+    public <T extends Animal> List<T> takeAnimalsV3 (List<T> list) {
+        return list;
+    }
+
+
 
     public void testSongList () {
         List<String> songs = getSongList();
